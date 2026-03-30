@@ -23,8 +23,8 @@ export default function ChatPage() {
       .then((r) => r.json())
       .then((d: { user: { id: string } | null }) => {
         if (d.user?.id){
-          // setNamespaceId(d.user.id);
-          setNamespaceId("mashreq-legal");
+          setNamespaceId(d.user.id);
+          // setNamespaceId("legal");
         }
       })
       .catch(() => {

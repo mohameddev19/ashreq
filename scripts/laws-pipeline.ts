@@ -87,11 +87,12 @@ console.error(
   `Pinecone index: ${process.env.PINECONE_INDEX} → namespace: ${namespaceId}`
 );
 
-const runner = process.platform === "win32" ? "npx.cmd" : "npx";
+/** Run tsx via `node …/tsx/dist/cli.mjs` — avoids Windows `spawnSync(npx.cmd)` EINVAL. */
+const tsxCli = path.join(process.cwd(), "node_modules", "tsx", "dist", "cli.mjs");
 
-function run(label: string, args: string[]) {
+function run(label: string, script: string, scriptArgs: string[]) {
   console.error(`\n— ${label} —`);
-  const r = spawnSync(runner, args, {
+  const r = spawnSync(process.execPath, [tsxCli, script, ...scriptArgs], {
     stdio: "inherit",
     cwd: process.cwd(),
     env: process.env,
@@ -105,16 +106,12 @@ function run(label: string, args: string[]) {
   }
 }
 
-run("Extract PDFs → processed text", [
-  "tsx",
-  "scripts/process-laws-dir.ts",
+run("Extract PDFs → processed text", "scripts/process-laws-dir.ts", [
   pdfDir,
   processedRoot,
 ]);
 
-run("Ingest processed → Pinecone", [
-  "tsx",
-  "scripts/ingest-processed-laws.ts",
+run("Ingest processed → Pinecone", "scripts/ingest-processed-laws.ts", [
   namespaceId,
   processedRoot,
 ]);
