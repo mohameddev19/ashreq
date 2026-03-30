@@ -22,7 +22,10 @@ export default function ChatPage() {
     void fetch("/api/auth/me", { credentials: "include" })
       .then((r) => r.json())
       .then((d: { user: { id: string } | null }) => {
-        if (d.user?.id) setNamespaceId(d.user.id);
+        if (d.user?.id){
+          // setNamespaceId(d.user.id);
+          setNamespaceId("mashreq-legal");
+        }
       })
       .catch(() => {
         setNamespaceId(null);
