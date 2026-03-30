@@ -37,7 +37,7 @@ export function AuthBar() {
 
   if (user === undefined) {
     return (
-      <Group justify="flex-end" mb="sm">
+      <Group justify="flex-end" gap="xs" wrap="wrap">
         <Text size="sm" c="dimmed">
           …
         </Text>
@@ -47,7 +47,7 @@ export function AuthBar() {
 
   if (!user) {
     return (
-      <Group justify="flex-end" mb="sm" gap="sm">
+      <Group justify="flex-end" gap="sm" wrap="wrap">
         <Anchor component={Link} href="/login" size="sm">
           تسجيل الدخول
         </Anchor>
@@ -59,7 +59,7 @@ export function AuthBar() {
   }
 
   return (
-    <Group justify="flex-end" mb="sm" gap="sm" wrap="wrap">
+    <Group justify="flex-end" gap="sm" wrap="wrap">
       <Text size="sm" c="dimmed" dir="ltr">
         {user.phone}
       </Text>

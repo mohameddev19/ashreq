@@ -4,6 +4,7 @@ import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
 import { Noto_Sans_Arabic } from "next/font/google";
 import { MantineProviders } from "@/components/MantineProviders";
+import "./tw.css";
 import "./globals.css";
 
 const notoArabic = Noto_Sans_Arabic({
@@ -31,7 +32,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <ColorSchemeScript defaultColorScheme="dark" />
+        <ColorSchemeScript defaultColorScheme="light" />
       </head>
       <body className={notoArabic.className}>
         <MantineProviders>{children}</MantineProviders>

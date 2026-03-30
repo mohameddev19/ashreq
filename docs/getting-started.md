@@ -1,5 +1,9 @@
 # Getting started
 
+## Documentation
+
+- [Design system](./design-system.md) — UI tokens, Mantine usage, RTL, layout shells.
+
 ## Prerequisites
 
 If you are unsure what **Groq** or **Pinecone** are, read [Services explained](./services.md) first.

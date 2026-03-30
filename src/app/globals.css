@@ -1,31 +1,3 @@
-:root {
-  --bg: #0f1419;
-  --surface: #1a222c;
-  --border: #2d3a47;
-  --text: #e8eef4;
-  --muted: #8b9aab;
-  --accent: #3d8fd1;
-  --warn-bg: #2a2218;
-  --warn-border: #6b5420;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html,
-body {
-  margin: 0;
-  min-height: 100%;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-}
-
-a {
-  color: var(--accent);
-}
-
 .app-shell {
   max-width: 52rem;
   margin: 0 auto;
@@ -38,12 +10,12 @@ a {
   border-radius: 10px;
   padding: 1rem 1.1rem;
   font-size: 0.9rem;
-  color: var(--muted);
+  color: var(--muted-foreground);
   margin-bottom: 1.5rem;
 }
 
 .disclaimer strong {
-  color: var(--text);
+  color: var(--foreground);
 }
 
 .workspace-bar {
@@ -53,35 +25,60 @@ a {
   gap: 0.75rem;
   margin-bottom: 1rem;
   font-size: 0.85rem;
-  color: var(--muted);
+  color: var(--muted-foreground);
 }
 
 .workspace-bar code {
-  background: var(--surface);
+  background: #f1f5f9;
   padding: 0.2rem 0.45rem;
   border-radius: 6px;
   font-size: 0.8rem;
   word-break: break-all;
 }
 
-button.btn {
+button.btn,
+a.btn {
   cursor: pointer;
   border: 1px solid var(--border);
-  background: var(--surface);
-  color: var(--text);
+  background: var(--card);
+  color: var(--foreground);
   padding: 0.45rem 0.85rem;
   border-radius: 8px;
   font: inherit;
+  text-decoration: none;
+  display: inline-block;
 }
 
-button.btn:hover {
-  border-color: var(--accent);
+button.btn:hover,
+a.btn:hover {
+  border-color: var(--link, #2563eb);
 }
 
-button.btn-primary {
-  background: var(--accent);
-  border-color: var(--accent);
+button.btn-primary,
+a.btn-primary {
+  background: var(--link, #2563eb);
+  border-color: var(--link, #2563eb);
   color: #fff;
+}
+
+.landing-actions {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.landing-cta {
+  padding: 0.65rem 1.25rem;
+  font-size: 1.05rem;
+}
+
+.back-home {
+  color: var(--muted-foreground);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.back-home:hover {
+  color: var(--link, #2563eb);
 }
 
 .chat-log {
@@ -91,7 +88,7 @@ button.btn-primary {
   max-height: 28rem;
   overflow-y: auto;
   padding: 1rem;
-  background: var(--surface);
+  background: var(--muted);
   margin-bottom: 1rem;
 }
 
@@ -101,11 +98,11 @@ button.btn-primary {
 }
 
 .msg-user {
-  color: #a8d4f0;
+  color: #1d4ed8;
 }
 
 .msg-assistant {
-  color: var(--text);
+  color: var(--foreground);
 }
 
 .chat-form {
@@ -120,8 +117,8 @@ button.btn-primary {
   resize: vertical;
   border-radius: 10px;
   border: 1px solid var(--border);
-  background: var(--bg);
-  color: var(--text);
+  background: var(--card);
+  color: var(--foreground);
   padding: 0.65rem 0.85rem;
   font: inherit;
 }
@@ -147,8 +144,8 @@ button.btn-primary {
   width: 100%;
   border-radius: 8px;
   border: 1px solid var(--border);
-  background: var(--bg);
-  color: var(--text);
+  background: var(--card);
+  color: var(--foreground);
   padding: 0.5rem 0.65rem;
   font: inherit;
 }
@@ -160,17 +157,17 @@ button.btn-primary {
 
 label.small {
   font-size: 0.8rem;
-  color: var(--muted);
+  color: var(--muted-foreground);
   display: block;
   margin-bottom: 0.2rem;
 }
 
 .status {
   font-size: 0.85rem;
-  color: var(--muted);
+  color: var(--muted-foreground);
   margin-top: 0.5rem;
 }
 
 .error {
-  color: #e07070;
+  color: #dc2626;
 }

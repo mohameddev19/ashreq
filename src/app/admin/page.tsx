@@ -1,6 +1,7 @@
 import Link from "next/link";
 import {
   Anchor,
+  Box,
   Container,
   Paper,
   Stack,
@@ -28,6 +29,13 @@ export default async function AdminDashboardPage() {
     .limit(200);
 
   return (
+    <Box
+      style={{
+        minHeight: "100vh",
+        background:
+          "linear-gradient(180deg, var(--mashreq-hero-top) 0%, #ffffff 50%)",
+      }}
+    >
     <Container size="md" py="xl">
       <Stack gap="md">
         <Title order={1} ta="center">
@@ -76,5 +84,6 @@ export default async function AdminDashboardPage() {
         </Paper>
       </Stack>
     </Container>
+    </Box>
   );
 }
