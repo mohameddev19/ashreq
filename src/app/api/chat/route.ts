@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import Groq from "groq-sdk";
 import { z } from "zod";
 import { getSessionUser } from "@/lib/auth/session";
-import { assertValidNamespaceId } from "@/lib/namespace";
+import { getRagNamespace } from "@/lib/namespace";
 import { consumeChatQuota } from "@/lib/rateLimit";
 import {
   documentsToContextBlock,
@@ -54,7 +54,7 @@ export async function POST(req: Request) {
     }
 
     const { namespaceId, messages } = parsed.data;
-    const ns = assertValidNamespaceId(namespaceId);
+    const ns = getRagNamespace(namespaceId);
 
     const groqKey = process.env.GROQ_API_KEY;
     if (!groqKey) {

@@ -10,8 +10,6 @@ type Role = "user" | "assistant";
 
 type Msg = { role: Role; content: string; at?: number };
 
-const NS_KEY = "mashreq_namespace";
-
 export default function ChatPage() {
   const [namespaceId, setNamespaceId] = useState<string | null>(null);
   const [messages, setMessages] = useState<Msg[]>([]);
@@ -19,12 +17,16 @@ export default function ChatPage() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    let id = localStorage.getItem(NS_KEY);
-    if (!id) {
-      id = crypto.randomUUID();
-      localStorage.setItem(NS_KEY, id);
-    }
-    setNamespaceId(id);
+    // Stable id for API body; if MASHREQ_RAG_NAMESPACE is set on the server,
+    // retrieval uses that shared namespace instead (one ingest for all accounts).
+    void fetch("/api/auth/me", { credentials: "include" })
+      .then((r) => r.json())
+      .then((d: { user: { id: string } | null }) => {
+        if (d.user?.id) setNamespaceId(d.user.id);
+      })
+      .catch(() => {
+        setNamespaceId(null);
+      });
   }, []);
 
   const send = async () => {

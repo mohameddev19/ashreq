@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { randomUUID } from "crypto";
 import { Document } from "@langchain/core/documents";
-import { assertValidNamespaceId } from "@/lib/namespace";
+import { getRagNamespace } from "@/lib/namespace";
 import { refineLegalText } from "@/lib/refineLegalText";
 import { getLegalRecursiveSplitter } from "@/lib/langchain/legalTextSplitter";
 import { getMashreqVectorStore } from "@/lib/langchain/mashreqVectorStore";
@@ -32,7 +32,7 @@ export async function POST(req: Request) {
 
     const { namespaceId, law_name, year, article_number, text, category } =
       parsed.data;
-    const ns = assertValidNamespaceId(namespaceId);
+    const ns = getRagNamespace(namespaceId);
 
     const splitter = getLegalRecursiveSplitter();
     const base = new Document({

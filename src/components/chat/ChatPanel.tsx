@@ -87,71 +87,102 @@ export function ChatPanel({
           )}
 
           {messages.map((message, index) => (
-            <Group
+            <Box
               key={`${message.role}-${message.at ?? index}-${index}`}
-              justify="flex-end"
-              align="flex-start"
-              wrap="nowrap"
-              gap="sm"
+              w="100%"
+              style={{
+                display: "flex",
+                justifyContent: message.role === "user" ? "flex-start" : "flex-end",
+              }}
             >
-              <Avatar
-                radius="xl"
-                size="md"
-                color={message.role === "user" ? "blue" : "gray"}
-                variant={message.role === "user" ? "light" : "filled"}
+              <Group
+                justify={message.role === "user" ? "flex-start" : "flex-start"}
+                align="flex-start"
+                wrap="nowrap"
+                gap="sm"
+                dir={message.role === "assistant" ? "ltr" : "rtl"}
+                style={{ maxWidth: "min(100%, 44rem)" }}
               >
-                {initials(message.role)}
-              </Avatar>
-              <Paper
-                p="md"
-                radius="lg"
-                shadow="xs"
-                maw="85%"
-                style={{
-                  background:
-                    message.role === "user"
-                      ? "var(--mantine-color-blue-0)"
-                      : "var(--mantine-color-body)",
-                  border:
-                    message.role === "assistant"
-                      ? "1px solid var(--mantine-color-gray-3)"
-                      : undefined,
-                }}
-              >
-                <Text size="sm" lh={1.65} style={{ whiteSpace: "pre-wrap" }}>
-                  {message.content}
-                </Text>
-                {message.at != null && (
+                <Avatar
+                  radius="xl"
+                  size="md"
+                  color={message.role === "user" ? "blue" : "gray"}
+                  variant={message.role === "user" ? "light" : "filled"}
+                >
+                  {initials(message.role)}
+                </Avatar>
+                <Paper
+                  p="md"
+                  radius="lg"
+                  shadow="xs"
+                  style={{
+                    maxWidth: "min(85%, 36rem)",
+                    background:
+                      message.role === "user"
+                        ? "var(--mantine-color-blue-0)"
+                        : "var(--mantine-color-body)",
+                    border:
+                      message.role === "assistant"
+                        ? "1px solid var(--mantine-color-gray-3)"
+                        : undefined,
+                  }}
+                >
                   <Text
-                    size="xs"
-                    c="dimmed"
-                    mt="xs"
-                    dir="ltr"
-                    style={{ textAlign: "left" }}
+                    size="sm"
+                    lh={1.65}
+                    style={{ whiteSpace: "pre-wrap" }}
+                    dir={message.role === "assistant" ? "ltr" : "rtl"}
                   >
-                    {new Date(message.at).toLocaleTimeString("ar-SA", {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
+                    {message.content}
                   </Text>
-                )}
-              </Paper>
-            </Group>
+                  {message.at != null && (
+                    <Text
+                      size="xs"
+                      c="dimmed"
+                      mt="xs"
+                      dir="ltr"
+                      style={{
+                        textAlign: message.role === "assistant" ? "left" : "right",
+                      }}
+                    >
+                      {new Date(message.at).toLocaleTimeString("ar-SA", {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
+                    </Text>
+                  )}
+                </Paper>
+              </Group>
+            </Box>
           ))}
 
           {loading && (
-            <Group justify="flex-end" align="flex-start" wrap="nowrap" gap="sm">
-              <Avatar radius="xl" size="md" color="gray" variant="filled">
-                م
-              </Avatar>
-              <Paper p="md" radius="lg" shadow="xs" maw="85%">
-                <Stack gap="xs">
-                  <Box h={8} bg="gray.3" style={{ borderRadius: 999 }} w="40%" />
-                  <Box h={8} bg="gray.3" style={{ borderRadius: 999 }} w="70%" />
-                  <Box h={8} bg="gray.3" style={{ borderRadius: 999 }} w="35%" />
-                </Stack>
-              </Paper>
-            </Group>
+            <Box w="100%" style={{ display: "flex", justifyContent: "flex-start" }}>
+              <Group
+                justify="flex-start"
+                align="flex-start"
+                wrap="nowrap"
+                gap="sm"
+                dir="ltr"
+                style={{ maxWidth: "min(100%, 44rem)" }}
+              >
+                <Avatar radius="xl" size="md" color="gray" variant="filled">
+                  م
+                </Avatar>
+                <Paper
+                  p="md"
+                  radius="lg"
+                  shadow="xs"
+                  style={{ maxWidth: "min(85%, 36rem)" }}
+                >
+                  <Stack gap="xs">
+                    <Box h={8} bg="gray.3" style={{ borderRadius: 999 }} w="40%" />
+                    <Box h={8} bg="gray.3" style={{ borderRadius: 999 }} w="70%" />
+                    <Box h={8} bg="gray.3" style={{ borderRadius: 999 }} w="35%" />
+                  </Stack>
+                </Paper>
+              </Group>
+            </Box>
           )}
         </Stack>
       </Box>
