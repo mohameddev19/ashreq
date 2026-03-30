@@ -1,0 +1,176 @@
+:root {
+  --bg: #0f1419;
+  --surface: #1a222c;
+  --border: #2d3a47;
+  --text: #e8eef4;
+  --muted: #8b9aab;
+  --accent: #3d8fd1;
+  --warn-bg: #2a2218;
+  --warn-border: #6b5420;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--accent);
+}
+
+.app-shell {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 3rem;
+}
+
+.disclaimer {
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-border);
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+
+.disclaimer strong {
+  color: var(--text);
+}
+
+.workspace-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.workspace-bar code {
+  background: var(--surface);
+  padding: 0.2rem 0.45rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  word-break: break-all;
+}
+
+button.btn {
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  padding: 0.45rem 0.85rem;
+  border-radius: 8px;
+  font: inherit;
+}
+
+button.btn:hover {
+  border-color: var(--accent);
+}
+
+button.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.chat-log {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  min-height: 14rem;
+  max-height: 28rem;
+  overflow-y: auto;
+  padding: 1rem;
+  background: var(--surface);
+  margin-bottom: 1rem;
+}
+
+.msg {
+  margin-bottom: 1rem;
+  white-space: pre-wrap;
+}
+
+.msg-user {
+  color: #a8d4f0;
+}
+
+.msg-assistant {
+  color: var(--text);
+}
+
+.chat-form {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.chat-form textarea {
+  flex: 1 1 16rem;
+  min-height: 3.5rem;
+  resize: vertical;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  padding: 0.65rem 0.85rem;
+  font: inherit;
+}
+
+.ingest {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.ingest h2 {
+  font-size: 1.1rem;
+  margin: 0 0 0.75rem;
+}
+
+.ingest-grid {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.ingest-grid input,
+.ingest-grid textarea {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  padding: 0.5rem 0.65rem;
+  font: inherit;
+}
+
+.ingest-grid textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+label.small {
+  font-size: 0.8rem;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.status {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 0.5rem;
+}
+
+.error {
+  color: #e07070;
+}

@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.next/
+.env
+*.log
+
+# Extracted law text (large); keep PDFs in laws/ as you prefer
+laws/processed/
